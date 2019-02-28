@@ -1,0 +1,5 @@
+gcc -c src/tes1.c -o bin/main.o
+gcc -c src/stack/stack.c    -o bin/static/stack.o
+ar rcs bin/static/libstack.a bin/static/stack.o
+gcc   bin/main.o  -Lbin/static -lstack -o bin/statically-linked
+
