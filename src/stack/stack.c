@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #define MAXSTACKS 20
-
+#define STACKDATATYPE char
+#define STACKDATAEMPTY '\x0'
 typedef struct __STACK{ 
-	char data;  
+	STACKDATATYPE data;  
 	void* next;
 } stack;
 
@@ -16,7 +17,7 @@ stack* initStack()
 	//printf(" infunc ");
 	stack* me = (stack*)malloc(sizeof(stack));
 	//printf(" malloc");
-	me->data = '\x0';
+	me->data = STACKDATAEMPTY;
 	//printf(" data");
 	me->next = NULL;
 	//printf(" next");
@@ -26,7 +27,7 @@ stack* initStack()
 	return me;
 }
 
-stack* push(stack* st, char x)
+stack* push(stack* st, STACKDATATYPE x)
 {
 	stack* ni = (stack*)malloc(sizeof(stack));//initStack();
 	ni->next = st;
@@ -40,10 +41,10 @@ stack* push(stack* st, char x)
 	return ni;
 }
 
-char pop(stack* st)
+STACKDATATYPE pop(stack* st)
 {
 	if (st == NULL) return ' ';
-	char x = st->data;
+	STACKDATATYPE x = st->data;
 	//memcpy(&x,(char*)st->data,1);
 	//free(st->data);
 	stack *tmp = st->next;
