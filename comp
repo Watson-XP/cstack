@@ -1,5 +1,12 @@
+#compile object file for test program
 gcc -c src/tes1.c -o bin/main.o
+
+#compile object file for stack libruary
 gcc -c src/stack/stack.c    -o bin/static/stack.o
+
+#archive object file with stack libruary
 ar rcs bin/static/libstack.a bin/static/stack.o
+
+#static link main program and archived libruary
 gcc   bin/main.o  -Lbin/static -lstack -o bin/statically-linked
 
